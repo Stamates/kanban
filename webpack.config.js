@@ -20,7 +20,6 @@ const common = {
   entry: {
     app: PATHS.app
   },
-
   // Add resolve.extensions.
   // '' is needed to allow imports without an extension.
   // Note the .'s before extensions as it will fail to match without!!!
@@ -76,7 +75,6 @@ if(TARGET === 'start' || !TARGET) {
     devtool: 'eval-source-map',
     devServer: {
       contentBase: PATHS.build,
-
       // Enable history API fallback so HTML5 History API based
       // routing works. This is a good default that will come
       // in handy in more complicated setups.
@@ -84,10 +82,8 @@ if(TARGET === 'start' || !TARGET) {
       hot: true,
       inline: true,
       progress: true,
-
       // Display only errors to reduce the amount of output.
       stats: 'errors-only',
-
       // Parse host and port from env so this is easy to customize.
       //
       // If you use Vagrant or Cloud9, set
