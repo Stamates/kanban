@@ -7,8 +7,6 @@ import LaneActions from '../actions/LaneActions';
 import Editable from './Editable.jsx';
 import {DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
-import '../lane.css';
-import '../note.css';
 
 const noteTarget = {
   hover(targetProps, monitor) {
