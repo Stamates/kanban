@@ -31,7 +31,7 @@ const common = {
   },
   // Add resolve.extensions.
   // '' is needed to allow imports without an extension.
-  // Note the .'s before extensions as it will fail to match without!!!
+  // Product the .'s before extensions as it will fail to match without!!!
   resolve: {
     extensions: ['', '.js', '.jsx']
   },

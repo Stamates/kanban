@@ -1,46 +1,46 @@
 import assert from 'assert';
-import NoteActions from 'app/actions/NoteActions';
-import NoteStore from 'app/stores/NoteStore';
+import ProductActions from 'app/actions/ProductActions';
+import ProductStore from 'app/stores/ProductStore';
 import alt from 'app/libs/alt';
 
-describe('NoteStore', () => {
+describe('ProductStore', () => {
   beforeEach(() => {
     alt.flush();
   });
 
-  it('creates notes', () => {
-    const task = 'test';
-    NoteActions.create({task});
-    const state = NoteStore.getState();
-    assert.equal(state.notes.length, 1);
-    assert.equal(state.notes[0].task, task);
+  it('creates products', () => {
+    const prod_name = 'test';
+    ProductActions.create({prod_name});
+    const state = ProductStore.getState();
+    assert.equal(state.products.length, 1);
+    assert.equal(state.products[0].prod_name, prod_name);
   });
 
-  it('updates notes', () => {
-    const task = 'test';
-    const updatedTask = 'test 2';
-    NoteActions.create({task});
-    const note = NoteStore.getState().notes[0];
-    NoteActions.update({...note, task: updatedTask});
-    const state = NoteStore.getState();
-    assert.equal(state.notes.length, 1);
-    assert.equal(state.notes[0].task, updatedTask);
+  it('updates products', () => {
+    const prod_name = 'test';
+    const updatedProd_name = 'test 2';
+    ProductActions.create({prod_name});
+    const product = ProductStore.getState().products[0];
+    ProductActions.update({...product, prod_name: updatedProd_name});
+    const state = ProductStore.getState();
+    assert.equal(state.products.length, 1);
+    assert.equal(state.products[0].prod_name, updatedProd_name);
   });
 
-  it('deletes notes', () => {
-    NoteActions.create({task: 'test'});
-    const note = NoteStore.getState().notes[0];
-    NoteActions.delete(note.id);
-    const state = NoteStore.getState();
-    assert.equal(state.notes.length, 0);
+  it('deletes products', () => {
+    ProductActions.create({prod_name: 'test'});
+    const product = ProductStore.getState().products[0];
+    ProductActions.delete(product.id);
+    const state = ProductStore.getState();
+    assert.equal(state.products.length, 0);
   });
 
-  it('gets notes', () => {
-    const task = 'test';
-    NoteActions.create({task: task});
-    const note = NoteStore.getState().notes[0];
-    const notes = NoteStore.getNotesByIds([note.id]);
-    assert.equal(notes.length, 1);
-    assert.equal(notes[0].task, task);
+  it('gets products', () => {
+    const prod_name = 'test';
+    ProductActions.create({prod_name: prod_name});
+    const product = ProductStore.getState().products[0];
+    const products = ProductStore.getProductsByIds([product.id]);
+    assert.equal(products.length, 1);
+    assert.equal(products[0].prod_name, prod_name);
   });
 });
