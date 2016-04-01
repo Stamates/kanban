@@ -7,6 +7,7 @@ import ShoplistActions from '../actions/ShoplistActions';
 import Editable from './Editable.jsx';
 import {DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
+import ProdForm from './Form.jsx';
 
 const productTarget = {
   hover(targetProps, monitor) {
@@ -30,15 +31,13 @@ export default class Shoplist extends React.Component {
     return connectDropTarget(
       <div {...props}>
         <div className="shoplist-header" onClick={this.activateShoplistEdit}>
-          <div className="shoplist-add-product">
-            <button onClick={this.addProduct}>+</button>
-          </div>
-          <Editable className="shoplist-name" editing={shoplist.editing}
-            value={shoplist.name} onEdit={this.editName} />
+          <Editable className="shoplist-name" editing={shoplist.editing} qty=""
+            value={shoplist.name} price="" onEdit={this.editName} />
           <div className="shoplist-delete">
             <button onClick={this.deleteShoplist}>x</button>
           </div>
         </div>
+        <ProdForm addProduct={this.addProduct}/>
         <AltContainer
           stores={[ProductStore]}
           inject={{
@@ -63,12 +62,16 @@ export default class Shoplist extends React.Component {
     ProductActions.update({id, prod_name, editing: false});
   }
 
-  addProduct = (e) => {
+  addForm = (e) => {
+    <ProdForm addProduct={this.addProduct}/>
+  }
+
+  addProduct = (qty, name, price, e) => {
     // If product is added, avoid opening shoplist name edit by stopping
     // event bubbling in this case.
-    e.stopPropagation();
+    // e.stopPropagation();
     const shoplistId = this.props.shoplist.id;
-    const product = ProductActions.create({prod_name: 'Product', editing: true});
+    const product = ProductActions.create({prod_name: name, qty: qty, price: price, editing: false});
     ShoplistActions.attachToShoplist({
       productId: product.id,
       shoplistId

@@ -1,6 +1,7 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import ProductActions from '../actions/ProductActions';
+import Firebase from 'firebase';
 
 class ProductStore {
   constructor() {
@@ -16,24 +17,20 @@ class ProductStore {
     this.setState({
       products: products.concat(product)
     });
+    this.productsRef = new Firebase('https://stamates-shopping.firebaseio.com/products');
+    this.productsRef.push(product);
     return product;
   }
   update(updatedProduct) {
     const products = this.products.map(product => {
       if (product.id === updatedProduct.id) {
-        // Object.assign is used to patch the product data here. It
-        // mutates target (first parameter). In order to avoid that,
-        // I use {} as its target and apply data on it.
-        //
-        // Example: {}, {a: 5, b: 3}, {a: 17} -> {a: 17, b: 3}
-        //
-        // You can pass as many objects to the method as you want.
         return Object.assign({}, product, updatedProduct);
       }
       return product;
     });
-    // This is same as `this.setState({products: products})`
     this.setState({products});
+    this.productsRef = new Firebase('https://stamates-shopping.firebaseio.com/products');
+    this.productsRef.set(products);
   }
   delete(id) {
     this.setState({
