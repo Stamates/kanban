@@ -38,6 +38,16 @@ export default class Shoplist extends React.Component {
           </div>
         </div>
         <ProdForm addProduct={this.addProduct}/>
+        <table style={{ textAlign: 'center' }}>
+          <tbody>
+            <tr>
+              <td>Qty</td>
+              <td>Product</td>
+              <td>Price</td>
+              <td>Delete</td>
+            </tr>
+          </tbody>
+        </table>
         <AltContainer
           stores={[ProductStore]}
           inject={{
@@ -53,13 +63,13 @@ export default class Shoplist extends React.Component {
     );
   }
 
-  editProduct(id, prod_name) {
+  editProduct(id, prodName) {
     // Don't modify if trying set an empty value
-    if (!prod_name.trim()) {
+    if (!prodName.trim()) {
       ProductActions.update({id, editing: false});
       return;
     }
-    ProductActions.update({id, prod_name, editing: false});
+    ProductActions.update({id, prodName, editing: false});
   }
 
   addForm = (e) => {
@@ -71,7 +81,7 @@ export default class Shoplist extends React.Component {
     // event bubbling in this case.
     // e.stopPropagation();
     const shoplistId = this.props.shoplist.id;
-    const product = ProductActions.create({prod_name: name, qty: qty, price: price, editing: false});
+    const product = ProductActions.create({prodName: name, qty: qty, price: price, editing: false});
     ShoplistActions.attachToShoplist({
       productId: product.id,
       shoplistId

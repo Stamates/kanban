@@ -1,8 +1,10 @@
 import React from 'react';
+// import Row from 'react-bootstrap/lib/Row';
+// import Col from 'react-bootstrap/lib/Col';
 
 export default class Editable extends React.Component {
   render() {
-    const {value, onEdit, onValueClick, editing, ...props} = this.props;
+    const {value, price, qty, onEdit, onValueClick, editing, ...props} = this.props;
     return (
       <div {...props}>
         {editing ? this.renderEdit() : this.renderValue()}
@@ -24,10 +26,46 @@ export default class Editable extends React.Component {
   renderValue = () => {
     const onDelete = this.props.onDelete;
     return (
-      <div onClick={this.props.onValueClick}>
-        <span className="value">{this.props.value}</span>
-        {onDelete ? this.renderDelete() : null }
-      </div>
+      // <div onClick={this.props.onValueClick}>
+      //   <span className="price">{this.props.price}</span>
+      //   <span className="value">{this.props.value}</span>
+      //   <span className="qty">{this.props.qty}</span>
+      //   {onDelete ? this.renderDelete() : null }
+      // </div>
+
+      <table>
+        <tbody>
+          <tr>
+            <td onClick={this.props.onValueClick}>
+              <span className="qty">{this.props.qty}</span>
+            </td>
+            <td onClick={this.props.onValueClick}>
+              <span className="value">{this.props.value}</span>
+            </td>
+            <td onClick={this.props.onValueClick}>
+              <span className="price">{this.props.price}</span>
+            </td>
+            <td onClick={this.props.onValueClick}>
+              {onDelete ? this.renderDelete() : null }
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      // <Row>
+      //   <Col xs={2} onClick={this.props.onValueClick}>
+      //     <span className="qty">{this.props.qty}</span>
+      //   </Col>
+      //   <Col xs={6} onClick={this.props.onValueClick}>
+      //     <span className="value">{this.props.value}</span>
+      //   </Col>
+      //   <Col xs={2} onClick={this.props.onValueClick}>
+      //     <span className="price">{this.props.price}</span>
+      //   </Col>
+      //   <Col xs={2} onClick={this.props.onValueClick}>
+      //     {onDelete ? this.renderDelete() : null }
+      //   </Col>
+      // </Row>
     );
   };
 

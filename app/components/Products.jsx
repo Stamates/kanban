@@ -10,7 +10,9 @@ export default ({products, onValueClick, onEdit, onDelete}) => {
         editing={product.editing} onMove={ShoplistActions.move}>
           <Editable
             editing={product.editing}
-            value={product.prod_name}
+            qty={product.qty}
+            value={product.prodName}
+            price={product.price}
             onValueClick={onValueClick.bind(null, product.id)}
             onEdit={onEdit.bind(null, product.id)}
             onDelete={onDelete.bind(null, product.id)} />

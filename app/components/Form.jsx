@@ -6,7 +6,7 @@ export default class Form extends React.Component {
 		this.state = {
 			clicked: false,
 			qty: '',
-			prod_name: '',
+			prodName: '',
 			price: ''
 		};
 	}
@@ -15,17 +15,17 @@ export default class Form extends React.Component {
 		return this.renderForm();
 	}
 
-
 	renderForm = () => {
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
-	 				<input type="text" placeholder="Qty" value={this.state.qty} onChange={this.qtyEdit} />
-	 				<input type="text" placeholder="Product" value={this.state.prod_name} onChange={this.nameEdit} />
-	 				<input type="text" placeholder="Price" value={this.state.price} onChange={this.priceEdit} />
-	 				<input type="submit" value="Add" />
-	 			</form>
- 			</div>
+			<form onSubmit={this.handleSubmit}>
+				<input type="text" placeholder="Qty" value={this.state.qty}
+						onChange={this.qtyEdit} />
+ 				<input type="text" placeholder="Product"
+					value={this.state.prodName} onChange={this.nameEdit} />
+				<input type="text" placeholder="Price" value={this.state.price}
+					onChange={this.priceEdit} />
+ 				<input type="submit" value="Add" />
+ 			</form>
 		);
 	};
 
@@ -34,7 +34,7 @@ export default class Form extends React.Component {
 	};
 
 	nameEdit = (e) => {
-		this.setState({prod_name: e.target.value});
+		this.setState({prodName: e.target.value});
 	};
 
 	priceEdit = (e) => {
@@ -44,12 +44,12 @@ export default class Form extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		var qty = this.state.qty;
-		var name = this.state.prod_name;
+		var name = this.state.prodName;
 		var price = this.state.price;
 		if (!name || !price || !qty) {
 		  return;
 		}
 		this.props.addProduct(qty, name, price);
-		this.setState({qty: '', prod_name: '', price: ''});
+		this.setState({qty: '', prodName: '', price: ''});
 	};
 }

@@ -67,9 +67,9 @@ class ShoplistStore {
     });
     this.setState({shoplists});
     this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    debugger;
-    this.firebaseRef.update(shoplistId);
-    // this.firebaseRef.set(shoplists);
+    // debugger;
+    // this.firebaseRef.update(shoplistId);
+    this.firebaseRef.set(shoplists);
   }
   detachFromShoplist({shoplistId, productId}) {
     const shoplists = this.shoplists.map(shoplist => {
