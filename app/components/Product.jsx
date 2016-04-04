@@ -35,19 +35,15 @@ export default class Product extends React.Component {
   render() {
     const {connectDragSource, connectDropTarget, isDragging,
       onMove, id, editing, ...props} = this.props;
-    // const onDelete = this.props.onDelete;
     // Pass through if we are editing
     const dragSource = editing ? a => a : connectDragSource;
     return dragSource(connectDropTarget(
       <li style={{ opacity: isDragging ? 0 : 1 }} {...props} >
         {props.children}
+        <button
+          className='delete'
+          onClick={this.props.onDelete}>x</button>
       </li>
     ));
   }
-
-  // renderDelete = () => {
-  //   return <button
-  //     className='delete'
-  //     onClick={this.props.onDelete}>x</button>;
-  // };
 }

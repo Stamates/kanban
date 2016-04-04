@@ -31,8 +31,8 @@ export default class Shoplist extends React.Component {
     return connectDropTarget(
       <div {...props}>
         <div className="shoplist-header" onClick={this.activateShoplistEdit}>
-          <Editable className="shoplist-name" editing={shoplist.editing} qty=""
-            value={shoplist.name} price="" onEdit={this.editName} />
+          <Editable className="shoplist-name" editing={shoplist.editing}
+            value={shoplist.name} onEdit={this.editName} />
           <div className="shoplist-delete">
             <button onClick={this.deleteShoplist}>x</button>
           </div>
@@ -63,13 +63,13 @@ export default class Shoplist extends React.Component {
     );
   }
 
-  editProduct(id, prodName) {
+  editProduct(id, value, item) {
     // Don't modify if trying set an empty value
-    if (!prodName.trim()) {
+    if (!value.trim()) {
       ProductActions.update({id, editing: false});
       return;
     }
-    ProductActions.update({id, prodName, editing: false});
+    ProductActions.update({id, value, item, editing: false});
   }
 
   addForm = (e) => {
