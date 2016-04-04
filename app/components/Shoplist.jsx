@@ -34,11 +34,11 @@ export default class Shoplist extends React.Component {
           <Editable className="shoplist-name" editing={shoplist.editing}
             value={shoplist.name} onEdit={this.editName} />
           <div className="shoplist-delete">
-            <button onClick={this.deleteShoplist}>x</button>
+            <button onClick={this.deleteShoplist}>X</button>
           </div>
         </div>
         <ProdForm addProduct={this.addProduct}/>
-        <table style={{ textAlign: 'center' }}>
+        <table>
           <tbody>
             <tr>
               <td>Qty</td>

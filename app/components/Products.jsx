@@ -36,6 +36,7 @@ export default ({products, onValueClick, onEdit, onDelete}) => {
                   onValueClick={onValueClick.bind(null, product.id)}
                   onEdit={onEdit.bind(null, product.id)}/>
               </td>
+              <td>X</td>
             </tr>
           </tbody>
         </table>

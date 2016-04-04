@@ -42,7 +42,7 @@ export default class Product extends React.Component {
         {props.children}
         <button
           className='delete'
-          onClick={this.props.onDelete}>x</button>
+          onClick={this.props.onDelete}>X</button>
       </li>
     ));
   }

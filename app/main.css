@@ -5,6 +5,13 @@ body {
 
 table {
   width: 100%;
+  text-align: center;
+}
+
+.delete {
+  position: relative;
+  top: -20px;
+  left: -85px;
 }
 
 .shoplist {

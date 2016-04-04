@@ -8,8 +8,14 @@ class ShoplistStore {
   constructor() {
     this.bindActions(ShoplistActions);
     this.shoplists = [];
-    // TODO set initial state based on firebase data pull
-    
+    var temp = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
+    temp.once("value", function(snapshot) {
+      var items = [];
+      snapshot.forEach(function(data){
+        items.push(data.val());
+      }.bind(this));
+      this.setState({ shoplists: items });
+    }.bind(this));
   }
   create(shoplist) {
     const shoplists = this.shoplists;
@@ -46,7 +52,7 @@ class ShoplistStore {
   // }
   delete(id) {
     var validshoplists = this.shoplists.filter(shoplist => shoplist.id !== id)
-    var delshoplist = this.shoplists.filter(shoplist => shoplist.id === id)
+    // var delshoplist = this.shoplists.filter(shoplist => shoplist.id === id)
     this.setState({
       shoplists: validshoplists
     });

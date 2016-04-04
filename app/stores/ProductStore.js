@@ -7,6 +7,14 @@ class ProductStore {
   constructor() {
     this.bindActions(ProductActions);
     this.products = [];
+    var temp = new Firebase('https://stamates-shopping.firebaseio.com/products');
+    temp.once("value", function(snapshot) {
+      var items = [];
+      snapshot.forEach(function(data){
+        items.push(data.val());
+      }.bind(this));
+      this.setState({ products: items });
+    }.bind(this));
     this.exportPublicMethods({
       getProductsByIds: this.getProductsByIds.bind(this)
     });
