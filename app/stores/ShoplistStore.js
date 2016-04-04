@@ -8,6 +8,8 @@ class ShoplistStore {
   constructor() {
     this.bindActions(ShoplistActions);
     this.shoplists = [];
+    // TODO set initial state based on firebase data pull
+    
   }
   create(shoplist) {
     const shoplists = this.shoplists;
@@ -28,7 +30,7 @@ class ShoplistStore {
     });
     this.setState({shoplists});
     this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    // debugger;
+    // TODO use update instead of set so key structure of database is maintained instead of rewrites
     // this.firebaseRef.orderByChild("id").equalTo(updatedShoplist.id).on("value", function(snapshot) {
 		// 	snapshot.forEach(function(data) {
     //     // var record = data.val();
