@@ -16,27 +16,21 @@ export default ({products, onValueClick, onEdit, onDelete}) => {
                 <Editable
                   editing={product.editing}
                   value={product.qty}
-                  item="qty"
-                  onValueClick={onValueClick.bind(null, product.id)}
                   onEdit={onEdit.bind(null, product.id)}/>
               </td>
               <td>
                 <Editable
                   editing={product.editing}
                   value={product.prodName}
-                  item="prodName"
-                  onValueClick={onValueClick.bind(null, product.id)}
                   onEdit={onEdit.bind(null, product.id)}/>
               </td>
               <td>
                 <Editable
                   editing={product.editing}
                   value={product.price}
-                  item="price"
-                  onValueClick={onValueClick.bind(null, product.id)}
                   onEdit={onEdit.bind(null, product.id)}/>
               </td>
-              <td>X</td>
+              <td id="del">del</td>
             </tr>
           </tbody>
         </table>
@@ -45,11 +39,44 @@ export default ({products, onValueClick, onEdit, onDelete}) => {
   );
 };
 
-// <Editable
-//   editing={product.editing}
-//   qty={product.qty}
-//   value={product.prodName}
-//   price={product.price}
-//   onValueClick={onValueClick.bind(null, product.id)}
-//   onEdit={onEdit.bind(null, product.id)}
-//   onDelete={onDelete.bind(null, product.id)} />
+// TODO need to create separate components for qty, prodName, and price to allow
+// for editing each value individually
+//
+// export default ({products, onValueClick, onEdit, onDelete}) => {
+//   return (
+//     <ul className="products">{products.map(product =>
+//       <Product className="product" id={product.id} key={product.id}
+//         editing={product.editing} onMove={ShoplistActions.move}
+//         onDelete={onDelete.bind(null, product.id)} >
+//         <table>
+//           <tbody>
+//             <tr>
+//               <td>
+//                 <Editable
+//                   editing={product.editing}
+//                   value={product.qty}
+//                   onValueClick={onValueClick.bind(null, product.id)}
+//                   onEdit={onEdit.bind(null, product.id)}/>
+//               </td>
+//               <td>
+//                 <Editable
+//                   editing={product.editing}
+//                   value={product.prodName}
+//                   onValueClick={onValueClick.bind(null, product.id)}
+//                   onEdit={onEdit.bind(null, product.id)}/>
+//               </td>
+//               <td>
+//                 <Editable
+//                   editing={product.editing}
+//                   value={product.price}
+//                   onValueClick={onValueClick.bind(null, product.id)}
+//                   onEdit={onEdit.bind(null, product.id)}/>
+//               </td>
+//               <td>X</td>
+//             </tr>
+//           </tbody>
+//         </table>
+//       </Product>
+//     )}</ul>
+//   );
+// };

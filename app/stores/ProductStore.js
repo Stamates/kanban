@@ -41,9 +41,13 @@ class ProductStore {
     this.productsRef.set(products);
   }
   delete(id) {
+    var validProducts = this.products.filter(product => product.id !== id);
     this.setState({
-      products: this.products.filter(product => product.id !== id)
+      products: validProducts
     });
+    // Maintain products to be used for future list creation (lookup)
+    // this.productsRef = new Firebase('https://stamates-shopping.firebaseio.com/products');
+    // this.productsRef.set(validProducts);
   }
   getProductsByIds(ids) {
     return (ids || []).map(

@@ -1,6 +1,7 @@
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import ShoplistActions from '../actions/ShoplistActions';
+import ProductActions from '../actions/ProductActions';
 import update from 'react-addons-update';
 import Firebase from 'firebase';
 
@@ -51,13 +52,28 @@ class ShoplistStore {
   //   });
   // }
   delete(id) {
-    var validshoplists = this.shoplists.filter(shoplist => shoplist.id !== id)
-    // var delshoplist = this.shoplists.filter(shoplist => shoplist.id === id)
+    // TODO remove products associated with shopping list
+    // debugger;
+    // var delShoplist = this.shoplists.filter(shoplist => shoplist.id === id)
+    // var invalidProducts = [];
+    // for (var key in delShoplist[0]) {
+    //   if (delShoplist[0].hasOwnProperty(key)) {
+    //     if (key == "products") {
+    //       for (var i=0; i < delShoplist[0][key].length; i++) {
+    //         invalidProducts.push(delShoplist[0][key][i])
+    //       }
+    //     }
+    //   }
+    // }
+    // for (var j=0; j < invalidProducts.length; j++) {
+    //   ProductActions.delete(invalidProducts[i]);
+    // }
+    var validShoplists = this.shoplists.filter(shoplist => shoplist.id !== id)
     this.setState({
-      shoplists: validshoplists
+      shoplists: validShoplists
     });
     this.firebaseRef = new Firebase('https://stamates-shopping.firebaseio.com/shoplists');
-    this.firebaseRef.set(validshoplists);
+    this.firebaseRef.set(validShoplists);
   }
   attachToShoplist({shoplistId, productId}) {
     const shoplists = this.shoplists.map(shoplist => {
